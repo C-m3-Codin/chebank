@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "265572700547",
+    "project_id": "chebank-78ff6",
+    "storage_bucket": "chebank-78ff6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265572700547:android:be0d4a19dcbaed1148e6b6",
+        "android_client_info": {
+          "package_name": "com.example.chebank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265572700547-rpsq1f2dv5e4ea13q9ivu6i1c1u7eirr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsxxM_9WGyu5hbHOCjIV2fn19Z6s-y0Ok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265572700547-rpsq1f2dv5e4ea13q9ivu6i1c1u7eirr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
