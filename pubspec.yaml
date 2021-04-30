@@ -31,6 +31,8 @@ dependencies:
   firebase_auth: ^1.0.3
   firebase_core: ^1.0.3
   cloud_firestore: ^1.0.4
+  qr_flutter: ^3.2.0
+  barcode_scan_fix: ^1.0.2
   animated_splash_screen: ^1.1.0
   assorted_layout_widgets: ^4.0.5
 
