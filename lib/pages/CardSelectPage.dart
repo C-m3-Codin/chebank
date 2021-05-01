@@ -1,3 +1,9 @@
+import 'package:chebank/models/CardModel.dart';
+import 'package:chebank/pages/ReadQr.dart';
+import 'package:chebank/services/GetData.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 class DisplayCards extends StatefulWidget {
   @override
   _DisplayCardsState createState() => _DisplayCardsState();
@@ -20,7 +26,7 @@ class _DisplayCardsState extends State<DisplayCards> {
         },
       ),
       appBar: AppBar(
-        title: Text("Cards Select"),
+        title: Text("Select Card"),
       ),
       body: ListView.builder(
           itemCount: cards.length,
@@ -38,6 +44,14 @@ class _DisplayCardsState extends State<DisplayCards> {
                         top: Radius.zero, bottom: Radius.circular(20)),
                   ),
                   child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ScanQR(
+                                    card: cards[ind].cardNo,
+                                  )));
+                    },
                     leading: Container(
                       height: 40,
                       width: 40,

@@ -1,7 +1,11 @@
 import 'package:barcode_scan_fix/barcode_scan.dart';
+import 'package:chebank/models/CardModel.dart';
 import 'package:flutter/material.dart';
+import 'package:chebank/services/GetData.dart';
 
 class ScanQR extends StatefulWidget {
+  ScanQR({this.card});
+  String card;
   @override
   _ScanQRState createState() => _ScanQRState();
 }
@@ -21,6 +25,8 @@ class _ScanQRState extends State<ScanQR> {
       ),
     );
 
+    print("\n\n\n\n${widget.card.toString()}");
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Scan QR Code"),
@@ -31,7 +37,6 @@ class _ScanQRState extends State<ScanQR> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //Message displayed over here
             Text(
               "Result",
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
@@ -47,18 +52,12 @@ class _ScanQRState extends State<ScanQR> {
             SizedBox(
               height: 20.0,
             ),
-
-            //Button to scan QR code
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextButton(
-                // style: ButtonStyle
-
                 style: raisedButtonStyle,
-                // padding: EdgeInsets.all(15),
                 onPressed: () async {
-                  String codeSanner =
-                      await BarcodeScanner.scan(); //barcode scnner
+                  String codeSanner = await BarcodeScanner.scan();
                   setState(() {
                     qrCodeResult = codeSanner;
                     print("Scanning");
@@ -68,13 +67,20 @@ class _ScanQRState extends State<ScanQR> {
                   "Scan In Bank",
                   style: TextStyle(color: Colors.indigo[900]),
                 ),
-                //Button having rounded rectangle border
-                // shape: RoundedRectangleBorder(
-                //   side: BorderSide(color: Colors.indigo[900]),
-                //   borderRadius: BorderRadius.circular(20.0),
-                // ),
               ),
             ),
+            Container(
+                child: qrCodeResult == "Not Yet Scanned"
+                    ? Text("")
+                    : ElevatedButton(
+                        onPressed: () {
+                          // atttach card id to bank qr id
+                          //
+                          //
+                          DatabaseService db = DatabaseService();
+                          db.attachToQe(qrCodeResult, widget.card);
+                        },
+                        child: Text("Proceed With Transcation")))
           ],
         ),
       ),

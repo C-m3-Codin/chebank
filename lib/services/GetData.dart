@@ -17,6 +17,15 @@ class DatabaseService {
             .toList());
   }
 
+  attachToQe(String qrCode, String cardId) {
+    try {
+      print("\n\n\n\nDocument is ${qrCode}");
+      _db.collection("Transcations").doc(qrCode).update({"cardNo": cardId});
+    } catch (e) {
+      print("Error $e");
+    }
+  }
+
   fetchCardsnap() async {
     var a = await _db
         .collection("Person1")
