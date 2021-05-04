@@ -1,5 +1,6 @@
 import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/CardSelectPage.dart';
+import 'package:chebank/pages/FaceRecoog.dart';
 import 'package:chebank/pages/ReadQr.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,11 +32,12 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: "Bank",
-        initialRoute: "/CardsList",
+        initialRoute: "/face",
         routes: {
           '/QR': (context) => ScanQR(),
           '/': (context) => DecideLoginPage(),
-          '/CardsList': (context) => DisplayCards()
+          '/CardsList': (context) => DisplayCards(),
+          '/face': (context) => FaceDetection()
         },
       ),
     );
