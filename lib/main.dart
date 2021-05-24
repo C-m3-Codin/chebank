@@ -1,7 +1,9 @@
 import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/CardSelectPage.dart';
 import 'package:chebank/pages/FaceRecoog.dart';
+import 'package:chebank/pages/FirstScreen.dart';
 import 'package:chebank/pages/ReadQr.dart';
+import 'package:chebank/pages/test.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,12 +34,14 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: "Bank",
-        initialRoute: "/face",
+        initialRoute: "/First",
         routes: {
+          '/First': (context) => FirstPage(),
           '/QR': (context) => ScanQR(),
           '/': (context) => DecideLoginPage(),
           '/CardsList': (context) => DisplayCards(),
-          '/face': (context) => FaceDetection()
+          '/face': (context) => FaceDetection(),
+          '/face2': (context) => FaceDetectionFromLiveCamera()
         },
       ),
     );

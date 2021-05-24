@@ -1,12 +1,4 @@
-// To parse this JSON data, do
-//
-//     final CardModel = CardModelFromJson(jsonString);
-
-import 'dart:convert';
-
-// CardModel CardModelFromJson(String str) => CardModel.fromJson(json.decode(str));
-
-// String CardModelToJson(CardModel data) => json.encode(data.toJson());
+// import 'dart:convert';
 
 class CardModel {
   CardModel({

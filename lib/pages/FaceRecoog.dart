@@ -72,7 +72,7 @@ class _FaceDetectionState extends State<FaceDetection> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DETECT CROP DISEASES'),
+        title: Text('Clear Mask Test'),
         backgroundColor: Colors.blue[800],
       ),
       body: SingleChildScrollView(
@@ -83,8 +83,8 @@ class _FaceDetectionState extends State<FaceDetection> {
             children: <Widget>[
               _loading
                   ? Container(
-                      height: 300,
-                      width: 300,
+                      height: 200,
+                      width: 200,
                     )
                   : Container(
                       margin: EdgeInsets.all(20),
@@ -97,7 +97,7 @@ class _FaceDetectionState extends State<FaceDetection> {
                               ? Container()
                               : Container(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.6,
+                                      MediaQuery.of(context).size.height * 0.4,
                                   child: Image.file(
                                     _image,
                                   ),
@@ -136,13 +136,22 @@ class _FaceDetectionState extends State<FaceDetection> {
                 backgroundColor: Colors.amber,
               ),
               Divider(),
-              ElevatedButton(
-                onPressed: () {
-                  // launch(
-                  // 'https://wa.me/918240375474?text=Hi, could you advise me with ${_outputs[0]["label"]}');
-                },
-                child: Text('Ask our experts on WhatsApp'),
-              )
+              _outputs != null
+                  ? _outputs[0]["label"] == "1 Masked"
+                      ? Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/CardsList');
+                              // launch(
+                              // 'https://wa.me/918240375474?text=Hi, could you advise me with ${_outputs[0]["label"]}');
+                            },
+                            child: Text('Ask our experts on WhatsApp'),
+                          ),
+                        )
+                      : Container(
+                          child: Text("Please Wear a Mask"),
+                        )
+                  : Text("Scan Your Face")
             ],
           ),
         ),

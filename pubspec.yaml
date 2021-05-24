@@ -37,6 +37,7 @@ dependencies:
   assorted_layout_widgets: ^4.0.5
   tflite: ^1.1.2
   image_picker: ^0.7.4
+  camera: ^0.5.8+2
 
 dev_dependencies:
   flutter_test:
