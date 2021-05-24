@@ -21,8 +21,10 @@ class DatabaseService {
     try {
       print("\n\n\n\nDocument is ${qrCode}");
       _db.collection("Transcations").doc(qrCode).update({"cardNo": cardId});
+      return "attached";
     } catch (e) {
       print("Error $e");
+      return "Not attached";
     }
   }
 
@@ -35,6 +37,8 @@ class DatabaseService {
       print("\n\n\n\nHere");
       print(value.data()["idNo"]);
     });
+
+    // checkValid
     // .toString();
 
     print(

@@ -29,12 +29,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // ChangeNotifierProvider<Selected>(
+        // create: (_) => Selected(),
         StreamProvider<List<CardModel>>(
             create: (BuildContext context) => _db.fetchCards(), initialData: [])
       ],
       child: MaterialApp(
         title: "Bank",
-        initialRoute: "/First",
+        initialRoute: "/QR",
         routes: {
           '/First': (context) => FirstPage(),
           '/QR': (context) => ScanQR(),

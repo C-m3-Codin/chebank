@@ -145,7 +145,7 @@ class _FaceDetectionState extends State<FaceDetection> {
                               // launch(
                               // 'https://wa.me/918240375474?text=Hi, could you advise me with ${_outputs[0]["label"]}');
                             },
-                            child: Text('Ask our experts on WhatsApp'),
+                            child: Text('Proceed to Banking'),
                           ),
                         )
                       : Container(
