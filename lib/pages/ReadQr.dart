@@ -1,5 +1,6 @@
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:chebank/models/CardModel.dart';
+import 'package:chebank/pages/Banking.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -74,10 +75,11 @@ class _ScanQRState extends State<ScanQR> {
                     if (res.exists) {
                       DatabaseService db = DatabaseService();
 
-                      String a = db.attachToQe(qrCodeResult, widget.card);
+                      String a = await db.attachToQe(codeSanner, widget.card);
+                      print("\n\n\n\n\n\\n\n\n\n\n\n\n a $a");
 
                       // attachToQe()
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => Banking(
@@ -103,59 +105,6 @@ class _ScanQRState extends State<ScanQR> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Banking extends StatefulWidget {
-  String card;
-  Banking({this.card});
-  @override
-  _BankingState createState() => _BankingState();
-}
-
-class _BankingState extends State<Banking> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Transaction"),
-      ),
-      body: SafeArea(
-          child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(58.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Card(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        // withdraw
-                      },
-                      child: Text("withdraw")),
-                ),
-                Card(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        // withdraw
-                      },
-                      child: Text("Deposit")),
-                ),
-                Card(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        // withdraw
-                      },
-                      child: Text("Transaction History")),
-                ),
-              ],
-            ),
-          ),
-        ),
-      )),
     );
   }
 }

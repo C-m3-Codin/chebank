@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
       providers: [
         // ChangeNotifierProvider<Selected>(
         // create: (_) => Selected(),
-        StreamProvider<List<CardModel>>(
+        StreamProvider<List<CardDeets>>(
             create: (BuildContext context) => _db.fetchCards(), initialData: [])
       ],
       child: MaterialApp(
         title: "Bank",
-        initialRoute: "/QR",
+        initialRoute: "/CardsList",
         routes: {
           '/First': (context) => FirstPage(),
           '/QR': (context) => ScanQR(),

@@ -13,7 +13,7 @@ class _DisplayCardsState extends State<DisplayCards> {
   @override
   Widget build(BuildContext context) {
     String asd = "apple";
-    List<CardModel> cards = Provider.of<List<CardModel>>(context).toList();
+    List<CardDeets> cards = Provider.of<List<CardDeets>>(context).toList();
     // print("\n\n\n\n\n\n card length is ${cards.length}");
     return Scaffold(
       floatingActionButton: FloatingActionButton(

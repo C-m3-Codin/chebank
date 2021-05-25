@@ -1,35 +1,62 @@
-// import 'dart:convert';
+// To parse this JSON data, do
+//
+//     final cardDeets = cardDeetsFromJson(jsonString);
 
-class CardModel {
-  CardModel({
-    this.cardNo,
-    this.idNo,
+import 'dart:convert';
+
+CardDeets cardDeetsFromJson(String str) => CardDeets.fromJson(json.decode(str));
+
+String cardDeetsToJson(CardDeets data) => json.encode(data.toJson());
+
+class CardDeets {
+  CardDeets({
     this.balance,
-    this.personId,
+    this.personName,
+    this.id,
+    this.cardNo,
     this.transactions,
   });
 
-  String cardNo;
-  String idNo;
   String balance;
-  String personId;
-  List<Map<String, String>> transactions;
+  String personName;
+  String id;
+  String cardNo;
+  List<Transaction> transactions;
 
-  factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
-        cardNo: json["cardNo"],
-        idNo: json["idNo"],
+  factory CardDeets.fromJson(Map<String, dynamic> json) => CardDeets(
         balance: json["balance"],
-        personId: json["personId"],
-        transactions: List<Map<String, String>>.from(json["transactions"].map(
-            (x) => Map.from(x).map((k, v) => MapEntry<String, String>(k, v)))),
+        personName: json["personName"],
+        id: json["id"],
+        cardNo: json["cardNo"],
+        transactions: List<Transaction>.from(
+            json["transactions"].map((x) => Transaction.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "cardNo": cardNo,
-        "idNo": idNo,
         "balance": balance,
-        "personId": personId,
-        "transactions": List<dynamic>.from(transactions.map(
-            (x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
+        "personName": personName,
+        "id": id,
+        "cardNo": cardNo,
+        "transactions": List<dynamic>.from(transactions.map((x) => x.toJson())),
+      };
+}
+
+class Transaction {
+  Transaction({
+    this.amount,
+    this.time,
+  });
+
+  String amount;
+  String time;
+
+  factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
+        amount: json["amount"],
+        time: json["time"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "amount": amount,
+        "time": time,
       };
 }

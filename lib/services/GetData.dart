@@ -7,22 +7,26 @@ import 'package:chebank/main.dart';
 class DatabaseService {
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Stream<List<CardModel>> fetchCards() {
+  Stream<List<CardDeets>> fetchCards() {
     return _db
         .collection("Person1")
         // .orderBy("aaa", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
-            .map((documents) => CardModel.fromJson(documents.data()))
+            .map((documents) => CardDeets.fromJson(documents.data()))
             .toList());
   }
 
-  attachToQe(String qrCode, String cardId) {
+  attachToQe(String qrCode, String cardId) async {
     try {
       print("\n\n\n\nDocument is ${qrCode}");
-      _db.collection("Transcations").doc(qrCode).update({"cardNo": cardId});
+      await _db
+          .collection("Transcations")
+          .doc(qrCode)
+          .update({"cardNo": cardId});
       return "attached";
     } catch (e) {
+      print("$qrCode");
       print("Error $e");
       return "Not attached";
     }
