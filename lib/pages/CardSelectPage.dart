@@ -1,3 +1,4 @@
+import 'package:chebank/PhoneVerify.dart';
 import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/ReadQr.dart';
 import 'package:chebank/services/GetData.dart';
@@ -48,10 +49,20 @@ class _DisplayCardsState extends State<DisplayCards> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ScanQR(
-                                    card: cards[ind].cardNo,
-                                  )));
+                              builder: (context) =>
+                                  PhoneVerify(card: cards[ind])));
                     },
+
+                    // MaterialPageRoute(
+                    //     builder: (context) => PhoneVerify(card: cards[ind]));
+
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => ScanQR(
+                    //               card: cards[ind],
+                    //             )));
+
                     leading: Container(
                       height: 40,
                       width: 40,

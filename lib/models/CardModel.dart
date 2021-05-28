@@ -15,17 +15,20 @@ class CardDeets {
       this.id,
       this.cardNo,
       this.transactions,
-      this.password});
+      this.password,
+      this.phone});
 
   String balance;
   String personName;
   String password;
   String id;
   String cardNo;
+  String phone;
   List<Transaction> transactions;
 
   factory CardDeets.fromJson(Map<String, dynamic> json) => CardDeets(
         balance: json["balance"],
+        phone: json["phoneNo"],
         personName: json["personName"],
         id: json["id"],
         password: json["pass"],

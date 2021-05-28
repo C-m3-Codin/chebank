@@ -1,11 +1,14 @@
 // import 'dart:html';
 
+import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/ReadQr.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class PhoneVerify extends StatefulWidget {
+  PhoneVerify({this.card});
+  CardDeets card;
   @override
   _PhoneVerifyState createState() => _PhoneVerifyState();
 }
@@ -14,6 +17,13 @@ class _PhoneVerifyState extends State<PhoneVerify> {
   String _verificationCode;
   TextEditingController cNumberControl = new TextEditingController();
   TextEditingController cOtpController = new TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _verifyPhone(this.widget.card.phone);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +37,20 @@ class _PhoneVerifyState extends State<PhoneVerify> {
               shrinkWrap: true,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(15),
-                  child: TextField(
-                    controller: cNumberControl,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Card Name',
-                      hintText: 'Enter a Card Name',
+                    padding: EdgeInsets.all(15), child: Text("Verifing Otp")),
+                Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Center(child: CircularProgressIndicator())
+
+                    // TextField(
+                    //   controller: cNumberControl,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(),
+                    //     labelText: 'Card Name',
+                    //     hintText: 'Enter a Card Name',
+                    //   ),
+                    // ),
                     ),
-                  ),
-                ),
                 // Padding(
                 //   padding: EdgeInsets.all(15),
                 //   child: TextField(
@@ -48,15 +62,15 @@ class _PhoneVerifyState extends State<PhoneVerify> {
                 //     ),
                 //   ),
                 // ),
-                RaisedButton(
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  child: Text('Get Otp'),
-                  onPressed: () {
-                    print("\n\n\n\n\n\n\n gonna verify");
-                    _verifyPhone(cNumberControl.text);
-                  },
-                ),
+                // RaisedButton(
+                //   textColor: Colors.white,
+                //   color: Colors.blue,
+                //   child: Text('Verify Otp'),
+                //   onPressed: () {
+                //     print("\n\n\n\n\n\n\n gonna verify");
+                //     _verifyPhone(this.widget.card.phone);
+                //   },
+                // ),
 
                 Padding(
                   padding: EdgeInsets.all(15),
@@ -97,6 +111,7 @@ class _PhoneVerifyState extends State<PhoneVerify> {
   }
 
   _verifyPhone(String number) async {
+    print("\n\n\n\n\n\n\n\n\n number is $number \n\n\n\n\n\n");
     await FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: '+91' + number,
         verificationCompleted: (PhoneAuthCredential credential) async {

@@ -17,13 +17,20 @@ class DatabaseService {
             .toList());
   }
 
-  attachToQe(String qrCode, String cardId) async {
+  addingTransaction(String time, String amount, String cardName) {
+    var transaction = {"time": time, "amount": amount};
+    FirebaseFirestore.instance.collection('Person1').doc(cardName).update({
+      "transactions": FieldValue.arrayUnion([transaction])
+    });
+  }
+
+  attachToQe(String qrCode, CardDeets card) async {
     try {
       print("\n\n\n\nDocument is ${qrCode}");
       await _db
           .collection("Transcations")
           .doc(qrCode)
-          .update({"cardNo": cardId});
+          .update({"cardNo": card.cardNo, "person": card.personName});
       return "attached";
     } catch (e) {
       print("$qrCode");

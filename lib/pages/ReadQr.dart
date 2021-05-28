@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class ScanQR extends StatefulWidget {
   ScanQR({this.card});
-  String card;
+  CardDeets card;
   @override
   _ScanQRState createState() => _ScanQRState();
 }

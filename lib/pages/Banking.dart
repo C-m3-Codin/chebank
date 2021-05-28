@@ -1,9 +1,12 @@
+import 'package:chebank/AtmPass.dart';
 import 'package:chebank/models/CardModel.dart';
+import 'package:chebank/pages/ShowTransactions.dart';
+import 'package:chebank/services/GetData.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Banking extends StatefulWidget {
-  String card;
+  CardDeets card;
   Banking({this.card});
   @override
   _BankingState createState() => _BankingState();
@@ -28,13 +31,30 @@ class _BankingState extends State<Banking> {
                 Card(
                   child: ElevatedButton(
                       onPressed: () {
+                        DatabaseService db = new DatabaseService();
+                        // db.addingTransaction("2", "+234", widget.card.cardNo);
                         // withdraw
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AtmPass(
+                                      card: widget.card,
+                                      service: "W",
+                                    )));
                       },
                       child: Text("withdraw")),
                 ),
                 Card(
                   child: ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AtmPass(
+                                      card: widget.card,
+                                      service: "D",
+                                    )));
                         // withdraw
                       },
                       child: Text("Deposit")),
@@ -46,8 +66,9 @@ class _BankingState extends State<Banking> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ShowTransactions(
-                                      cardNo: widget.card,
+                                builder: (context) => AtmPass(
+                                      card: widget.card,
+                                      service: "T",
                                     )));
                       },
                       child: Text("Transaction History")),
@@ -57,41 +78,6 @@ class _BankingState extends State<Banking> {
           ),
         ),
       )),
-    );
-  }
-}
-
-class ShowTransactions extends StatefulWidget {
-  String cardNo;
-  ShowTransactions({this.cardNo});
-  @override
-  _ShowTransactionsState createState() => _ShowTransactionsState();
-}
-
-class _ShowTransactionsState extends State<ShowTransactions> {
-  @override
-  Widget build(BuildContext context) {
-    List<CardDeets> cards = Provider.of<List<CardDeets>>(context).toList();
-    List<Transaction> trans;
-    cards.forEach((element) {
-      if (element.cardNo == widget.cardNo) {
-        trans = element.transactions;
-      }
-    });
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Transactions"),
-      ),
-      body: ListView.builder(
-          itemCount: trans.length,
-          itemBuilder: (BuildContext context, int ind) {
-            return Card(
-              child: ListTile(
-                leading: Text(trans[ind].time),
-                title: Text(trans[ind].amount),
-              ),
-            );
-          }),
     );
   }
 }

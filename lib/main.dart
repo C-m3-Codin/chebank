@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => _db.fetchCards(), initialData: [])
       ],
       child: MaterialApp(
+        theme: ThemeData.dark(),
         title: "Bank",
-        initialRoute: "/phoneVerify",
+        initialRoute: "/CardsList",
         routes: {
           '/First': (context) => FirstPage(),
           '/QR': (context) => ScanQR(),
