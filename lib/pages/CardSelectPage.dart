@@ -52,17 +52,6 @@ class _DisplayCardsState extends State<DisplayCards> {
                               builder: (context) =>
                                   PhoneVerify(card: cards[ind])));
                     },
-
-                    // MaterialPageRoute(
-                    //     builder: (context) => PhoneVerify(card: cards[ind]));
-
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => ScanQR(
-                    //               card: cards[ind],
-                    //             )));
-
                     leading: Container(
                       height: 40,
                       width: 40,
@@ -73,10 +62,6 @@ class _DisplayCardsState extends State<DisplayCards> {
                       cards[ind].cardNo,
                       style: TextStyle(fontSize: 30),
                     )),
-                    // subtitle: Text("asd"),
-                    // subtitle: Column(
-                    //   children: [Text("Balance"), Text(cards[ind].balance)],
-                    // ),
                   ),
                 ),
               ),

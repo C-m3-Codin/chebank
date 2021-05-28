@@ -29,7 +29,8 @@ class _PhoneVerifyState extends State<PhoneVerify> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Add Card Details'),
+          title:
+              Text('Add Card ${widget.card.personName + widget.card.password}'),
         ),
         body: Padding(
             padding: EdgeInsets.all(15),
@@ -40,7 +41,7 @@ class _PhoneVerifyState extends State<PhoneVerify> {
                     padding: EdgeInsets.all(15), child: Text("Verifing Otp")),
                 Padding(
                     padding: EdgeInsets.all(15),
-                    child: Center(child: CircularProgressIndicator())
+                    child: CircularProgressIndicator()
 
                     // TextField(
                     //   controller: cNumberControl,
@@ -97,7 +98,9 @@ class _PhoneVerifyState extends State<PhoneVerify> {
                         if (value.user != null) {
                           Navigator.pushAndRemoveUntil(
                               context,
-                              MaterialPageRoute(builder: (context) => ScanQR()),
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ScanQR(card: widget.card)),
                               (route) => false);
                         }
                       });

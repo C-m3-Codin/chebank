@@ -3,6 +3,7 @@
 import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/ReadQr.dart';
 import 'package:chebank/pages/ShowTransactions.dart';
+import 'package:chebank/pages/WithdrawCash.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class _AtmPassState extends State<AtmPass> {
                   ),
                 ),
               ),
+              Text("${widget.card.password}"),
               // Padding(
               //   padding: EdgeInsets.all(15),
               //   child: TextField(
@@ -61,22 +63,24 @@ class _AtmPassState extends State<AtmPass> {
                 color: Colors.blue,
                 child: Text('Submit'),
                 onPressed: () {
+                  print("\n\n\n\n\n\n${widget.card.password}\n\n\n\n\n\n");
                   if (checkPass(cPinController.text)) {
                     // for transaction
-                    if (widget.service == "T")
+                    if (widget.service == "T") {
+                      print("\n\n\n\n\n\n${widget.card.password}\n\n\n\n\n\n");
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ShowTransactions(
                                     card: widget.card,
                                   )));
-
+                    }
                     // for withdraw
                     else if (widget.service == "W")
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ShowTransactions(
+                              builder: (context) => WithdrawCash(
                                     card: widget.card,
                                   )));
 

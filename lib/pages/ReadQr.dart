@@ -40,7 +40,7 @@ class _ScanQRState extends State<ScanQR> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Result",
+              "Result  ${widget.card.personName + widget.card.password}",
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
