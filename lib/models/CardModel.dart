@@ -9,16 +9,17 @@ CardDeets cardDeetsFromJson(String str) => CardDeets.fromJson(json.decode(str));
 String cardDeetsToJson(CardDeets data) => json.encode(data.toJson());
 
 class CardDeets {
-  CardDeets({
-    this.balance,
-    this.personName,
-    this.id,
-    this.cardNo,
-    this.transactions,
-  });
+  CardDeets(
+      {this.balance,
+      this.personName,
+      this.id,
+      this.cardNo,
+      this.transactions,
+      this.password});
 
   String balance;
   String personName;
+  String password;
   String id;
   String cardNo;
   List<Transaction> transactions;
@@ -27,6 +28,7 @@ class CardDeets {
         balance: json["balance"],
         personName: json["personName"],
         id: json["id"],
+        password: json["pass"],
         cardNo: json["cardNo"],
         transactions: List<Transaction>.from(
             json["transactions"].map((x) => Transaction.fromJson(x))),

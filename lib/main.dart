@@ -1,8 +1,10 @@
+import 'package:chebank/PhoneVerify.dart';
 import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/CardSelectPage.dart';
 import 'package:chebank/pages/FaceRecoog.dart';
 import 'package:chebank/pages/FirstScreen.dart';
 import 'package:chebank/pages/ReadQr.dart';
+import 'package:chebank/pages/addCard.dart';
 import 'package:chebank/pages/test.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,14 +38,16 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: "Bank",
-        initialRoute: "/CardsList",
+        initialRoute: "/phoneVerify",
         routes: {
           '/First': (context) => FirstPage(),
           '/QR': (context) => ScanQR(),
           '/': (context) => DecideLoginPage(),
           '/CardsList': (context) => DisplayCards(),
           '/face': (context) => FaceDetection(),
-          '/face2': (context) => FaceDetectionFromLiveCamera()
+          '/addCard': (context) => AddAccount(),
+          '/face2': (context) => FaceDetectionFromLiveCamera(),
+          '/phoneVerify': (context) => PhoneVerify()
         },
       ),
     );

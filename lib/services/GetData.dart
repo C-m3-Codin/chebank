@@ -32,6 +32,32 @@ class DatabaseService {
     }
   }
 
+  addCard(String cardId, String password, String name, String person) async {
+    try {
+      print("\n\n\n\nDocument is ${cardId}");
+      await _db.collection("Person1").doc(cardId).set({
+        "cardNo": cardId,
+        "password": password,
+        "name": name,
+        "personName": person,
+        "transactions": [{}]
+      });
+
+      // update({
+      //   "cardNo": cardId,
+      //   "password": password,
+      //   "name": name,
+      //   "personName": person
+      // });
+      return "attached";
+    } catch (e) {
+      print("$cardId");
+
+      print("Error $e");
+      return "Not attached";
+    }
+  }
+
   fetchCardsnap() async {
     var a = await _db
         .collection("Person1")
