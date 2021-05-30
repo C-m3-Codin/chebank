@@ -17,6 +17,8 @@ class _ScanQRState extends State<ScanQR> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        "\n\n\n\n\n\n\n\n\balance from trans \n${widget.card.transactions.length}\n\n\n\n\n\n\n");
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       onPrimary: Colors.black87,
       primary: Colors.grey[300],
@@ -40,7 +42,7 @@ class _ScanQRState extends State<ScanQR> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Result  ${widget.card.personName + widget.card.password}",
+              "Result ",
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
@@ -76,7 +78,8 @@ class _ScanQRState extends State<ScanQR> {
                       DatabaseService db = DatabaseService();
 
                       String a = await db.attachToQe(codeSanner, widget.card);
-                      print("\n\n\n\n\n\\n\n\n\n\n\n\n a $a");
+                      print(
+                          "\n\n\n\n\n\\n\n\n\n\n\n\n a ${widget.card.balance}");
 
                       // attachToQe()
                       Navigator.pushReplacement(

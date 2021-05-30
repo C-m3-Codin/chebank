@@ -63,11 +63,13 @@ class _AtmPassState extends State<AtmPass> {
                 color: Colors.blue,
                 child: Text('Submit'),
                 onPressed: () {
-                  print("\n\n\n\n\n\n${widget.card.password}\n\n\n\n\n\n");
+                  print(
+                      "\n\n\n\npassword here\n\n${widget.card.password}\n\n\n\n\n\n");
                   if (checkPass(cPinController.text)) {
                     // for transaction
                     if (widget.service == "T") {
-                      print("\n\n\n\n\n\n${widget.card.password}\n\n\n\n\n\n");
+                      print(
+                          "transactions \n\n\n\n\n\n${widget.card.password}\n\n\n\n\n\n");
                       Navigator.push(
                           context,
                           MaterialPageRoute(

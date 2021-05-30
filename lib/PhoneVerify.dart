@@ -21,6 +21,7 @@ class _PhoneVerifyState extends State<PhoneVerify> {
   @override
   void initState() {
     // TODO: implement initState
+    print("\n\n\n\n ${widget.card.personName}\n\n\n\n\n\n");
     _verifyPhone(this.widget.card.phone);
     super.initState();
   }
@@ -89,24 +90,30 @@ class _PhoneVerifyState extends State<PhoneVerify> {
                   color: Colors.blue,
                   child: Text('Save'),
                   onPressed: () async {
-                    try {
-                      await FirebaseAuth.instance
-                          .signInWithCredential(PhoneAuthProvider.credential(
-                              verificationId: _verificationCode,
-                              smsCode: cOtpController.text))
-                          .then((value) async {
-                        if (value.user != null) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ScanQR(card: widget.card)),
-                              (route) => false);
-                        }
-                      });
-                    } catch (e) {
-                      print("\n\n\n\n\n\n\n\n ${e.toString()}");
-                    }
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ScanQR(card: widget.card)),
+                        (route) => false);
+
+                    // try {
+                    //   await FirebaseAuth.instance
+                    //       .signInWithCredential(PhoneAuthProvider.credential(
+                    //           verificationId: _verificationCode,
+                    //           smsCode: cOtpController.text))
+                    //       .then((value) async {
+                    //     if (value.user != null) {
+                    //       Navigator.pushAndRemoveUntil(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) =>
+                    //                   ScanQR(card: widget.card)),
+                    //           (route) => false);
+                    //     }
+                    //   });
+                    // } catch (e) {
+                    //   print("\n\n\n\n\n\n\n\n ${e.toString()}");
+                    // }
                   },
                 )
               ],
@@ -124,7 +131,10 @@ class _PhoneVerifyState extends State<PhoneVerify> {
             if (value.user != null) {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => ScanQR()),
+                  MaterialPageRoute(
+                      builder: (context) => ScanQR(
+                            card: widget.card,
+                          )),
                   (route) => false);
             }
           });
@@ -135,9 +145,11 @@ class _PhoneVerifyState extends State<PhoneVerify> {
         codeSent: (String verficationID, int resendToken) {
           print("\n\n\n\n\n\n\n gonna send verify id");
           print("\n\n\n\n\n\n\n verify id is ${verficationID}");
-          setState(() {
-            _verificationCode = verficationID;
-          });
+          // setState(() {
+          //   _verificationCode = verficationID;
+          // }
+
+          // );
         },
         codeAutoRetrievalTimeout: (String verificationID) {
           setState(() {

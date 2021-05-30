@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:chebank/models/CardModel.dart';
+import 'package:chebank/pages/Login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chebank/main.dart';
 
@@ -9,7 +10,7 @@ class DatabaseService {
 
   Stream<List<CardDeets>> fetchCards() {
     return _db
-        .collection("Person1")
+        .collection(email)
         // .orderBy("aaa", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
@@ -19,7 +20,7 @@ class DatabaseService {
 
   addingTransaction(String time, String amount, String cardName) {
     var transaction = {"time": time, "amount": amount};
-    FirebaseFirestore.instance.collection('Person1').doc(cardName).update({
+    FirebaseFirestore.instance.collection(email).doc(cardName).update({
       "transactions": FieldValue.arrayUnion([transaction])
     });
   }
@@ -39,14 +40,18 @@ class DatabaseService {
     }
   }
 
-  addCard(String cardId, String password, String name, String person) async {
+  addCard(String cardId, String password, String name, String person,
+      String phone) async {
     try {
       print("\n\n\n\nDocument is ${cardId}");
-      await _db.collection("Person1").doc(cardId).set({
+      await _db.collection(email).doc(cardId).set({
         "cardNo": cardId,
-        "password": password,
-        "name": name,
+        "pass": password,
+        "balance": name,
         "personName": person,
+        "phoneNo": phone,
+        "id": cardId,
+        "balance": "5000",
         "transactions": [{}]
       });
 
@@ -67,7 +72,7 @@ class DatabaseService {
 
   fetchCardsnap() async {
     var a = await _db
-        .collection("Person1")
+        .collection(email)
         .doc("gC1WA0SoBzf0QU6kiSR0")
         .get()
         .then((value) {

@@ -3,6 +3,7 @@ import 'package:chebank/models/CardModel.dart';
 import 'package:chebank/pages/CardSelectPage.dart';
 import 'package:chebank/pages/FaceRecoog.dart';
 import 'package:chebank/pages/FirstScreen.dart';
+import 'package:chebank/pages/Login.dart';
 import 'package:chebank/pages/ReadQr.dart';
 import 'package:chebank/pages/addCard.dart';
 import 'package:chebank/pages/test.dart';
@@ -12,13 +13,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+String auth;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  email = await FirebaseAuth.instance.currentUser.toString() == "null"
+      ? "null"
+      : FirebaseAuth.instance.currentUser.email;
   // auth = await FirebaseAuth.instance.currentUser.toString() == "null"
   //     ? "null"
   //     : FirebaseAuth.instance.currentUser.uid;
-  // print("\n\n\nEntered\n\n\n\n\n");
+  print("\n\n\nEntered\n\n\n\n\n $email");
   runApp(MyApp());
 }
 
@@ -31,6 +37,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        //  ChangeNotifierProvider<Auth>(
+        // create: (_) => Auth(),
+
         // ChangeNotifierProvider<Selected>(
         // create: (_) => Selected(),
         StreamProvider<List<CardDeets>>(
@@ -39,8 +48,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.dark(),
         title: "Bank",
-        initialRoute: "/CardsList",
+        initialRoute: email == "null" ? "/Login" : "/First",
         routes: {
+          '/Login': (context) => RegisterEmailSection(),
           '/First': (context) => FirstPage(),
           '/QR': (context) => ScanQR(),
           '/': (context) => DecideLoginPage(),

@@ -12,13 +12,15 @@ class ShowTransactions extends StatefulWidget {
 class _ShowTransactionsState extends State<ShowTransactions> {
   @override
   Widget build(BuildContext context) {
-    List<CardDeets> cards = Provider.of<List<CardDeets>>(context).toList();
+    // List<CardDeets> cards = Provider.of<List<CardDeets>>(context).toList();
     List<Transaction> trans;
     // cards.forEach((element) {
     //   if (element.cardNo == widget.card.cardNo) {
     //     trans = element.transactions;
     //   }
     // });
+    print(
+        "\n\n\n\n\n\n\n\n\balance from trans \n${widget.card.transactions.length}\n\n\n\n\n\n\n");
     var balance = 0;
     widget.card.transactions.forEach((element) {
       balance += int.parse(element.amount);

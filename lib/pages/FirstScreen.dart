@@ -1,3 +1,4 @@
+import 'package:chebank/pages/addCard.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
@@ -17,8 +18,15 @@ class FirstPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, '/face');
                   },
+
+                  // AddAccount
                   child: Text("Comduct Transaction")),
-              ElevatedButton(onPressed: () {}, child: Text("Add Card")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddAccount()));
+                  },
+                  child: Text("Add Card")),
               ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/face2');

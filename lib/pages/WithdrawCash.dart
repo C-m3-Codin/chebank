@@ -53,6 +53,10 @@ class _WithdrawCashState extends State<WithdrawCash> {
                 color: Colors.blue,
                 child: Text('Withdraw'),
                 onPressed: () {
+                  print(
+                      "\n\n\n\n\n\n\n\n\n\n withdraw pressed\n\n\n\n\n\n\n\n");
+                  print(
+                      "\n\n\n\n\n\n\n\n\n\n ${widget.card.personName}\n\n\n\n\n\n\n\n");
                   var time = DateFormat.yMEd().add_jms().format(DateTime.now());
                   if (checkAmountPossible(cCashController.text)) {
                     DatabaseService db = new DatabaseService();
@@ -81,8 +85,12 @@ class _WithdrawCashState extends State<WithdrawCash> {
 
   bool checkAmountPossible(String amount) {
     int balance = 0;
+    print("\n\n\n\n${widget.card.transactions.length}\n\n\n\n");
+
     widget.card.transactions.forEach((element) {
+      print("\n\n\n\n\n\n\n\n\ninside transactio\n\n\n\n\n\n\nn");
       balance += int.parse(element.amount);
+      print("\n\n\n\n\n\n\n\n\ninside transactio\n\n\n\n\n\n\nn");
     });
 
     int wanted = int.parse(amount);
