@@ -1,3 +1,4 @@
+import 'package:chebank/pages/CardSelectPage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -141,8 +142,10 @@ class _FaceDetectionState extends State<FaceDetection> {
                       ? Container(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/CardsList');
-                              // launch(
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DisplayCards()));
                               // 'https://wa.me/918240375474?text=Hi, could you advise me with ${_outputs[0]["label"]}');
                             },
                             child: Text('Proceed to Banking'),

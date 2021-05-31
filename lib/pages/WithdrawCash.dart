@@ -1,4 +1,6 @@
 import 'package:chebank/models/CardModel.dart';
+import 'package:chebank/pages/Banking.dart';
+import 'package:chebank/pages/FirstScreen.dart';
 import 'package:chebank/services/GetData.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -68,7 +70,8 @@ class _WithdrawCashState extends State<WithdrawCash> {
                       content: Text('Take The cash and get a burger'),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    Navigator.popUntil(context, (route) => false);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => FirstPage()));
                   } else {
                     final snackBar = SnackBar(
                       content: Text(

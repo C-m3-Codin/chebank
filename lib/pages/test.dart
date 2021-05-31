@@ -164,7 +164,8 @@ class _FaceDetectionFromLiveCameraState
                 ElevatedButton(
                   child: Text('Approve'),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/CardsList');
+                    Navigator.pop(context);
+                    Navigator.popAndPushNamed(context, '/CardsList');
                     print("\n\n\n\n\n\n\n\ tadaaa");
                     // Navigator.of(context).pop();
                   },

@@ -29,20 +29,28 @@ class _PhoneVerifyState extends State<PhoneVerify> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          title:
-              Text('Add Card ${widget.card.personName + widget.card.password}'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
+          ),
+          title: Text('Otp Verification'),
+          //  ${widget.card.personName + widget.card.password}
         ),
         body: Padding(
             padding: EdgeInsets.all(15),
             child: ListView(
               shrinkWrap: true,
               children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.all(15), child: Text("Verifing Otp")),
+                Center(
+                  child: Padding(
+                      padding: EdgeInsets.all(15), child: Text("Verifing Otp")),
+                ),
                 Padding(
                     padding: EdgeInsets.all(15),
-                    child: CircularProgressIndicator()
+                    child: Center(child: CircularProgressIndicator())
 
                     // TextField(
                     //   controller: cNumberControl,
@@ -86,8 +94,8 @@ class _PhoneVerifyState extends State<PhoneVerify> {
                   ),
                 ),
                 RaisedButton(
-                  textColor: Colors.white,
-                  color: Colors.blue,
+                  textColor: Colors.black,
+                  color: Colors.yellow,
                   child: Text('Save'),
                   onPressed: () async {
                     Navigator.pushAndRemoveUntil(

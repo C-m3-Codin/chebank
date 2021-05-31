@@ -33,80 +33,97 @@ class _ScanQRState extends State<ScanQR> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Scan QR Code"),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              "Result ",
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            qrCodeResult != "Not Yet Scanned"
-                ? ElevatedButton(
-                    onPressed: () {}, child: Text("Naviagate to page"))
-                : Container(),
-            Text(
-              qrCodeResult,
-              style: TextStyle(
-                fontSize: 20.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: TextButton(
-                style: raisedButtonStyle,
-                onPressed: () async {
-                  String codeSanner = await BarcodeScanner.scan();
-                  try {
-                    var res = await FirebaseFirestore.instance
-                        .doc('Transcations/$codeSanner')
-                        .get();
-                    print(res.exists
-                        ? '\n\n\n\n\n\n\n\n\n\n exists'
-                        : '\n\n\n\n\n\n\n\n\n\n\ndoes not exist');
-
-                    if (res.exists) {
-                      DatabaseService db = DatabaseService();
-
-                      String a = await db.attachToQe(codeSanner, widget.card);
-                      print(
-                          "\n\n\n\n\n\\n\n\n\n\n\n\n a ${widget.card.balance}");
-
-                      // attachToQe()
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Banking(
-                                    card: widget.card,
-                                  )));
-                    }
-                    // : null;
-                  } catch (err) {
-                    print(err);
-                  }
-
-                  setState(() {
-                    qrCodeResult = codeSanner;
-                    print("Scanning");
-                  });
-                },
-                child: Text(
-                  "Scan In Bank",
-                  style: TextStyle(color: Colors.indigo[900]),
-                ),
-              ),
-            ),
-          ],
+        title: Text("Scan QR Code from ATM"),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
         ),
+        centerTitle: true,
+      ),
+      body: Stack(
+        children: [
+          Image.asset(
+            "assets/qr.jpg",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Result ",
+                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                qrCodeResult != "Not Yet Scanned"
+                    ? ElevatedButton(
+                        onPressed: () {}, child: Text("Naviagate to page"))
+                    : Container(),
+                Text(
+                  qrCodeResult,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextButton(
+                    style: raisedButtonStyle,
+                    onPressed: () async {
+                      String codeSanner = await BarcodeScanner.scan();
+                      try {
+                        var res = await FirebaseFirestore.instance
+                            .doc('Transcations/$codeSanner')
+                            .get();
+                        print(res.exists
+                            ? '\n\n\n\n\n\n\n\n\n\n exists'
+                            : '\n\n\n\n\n\n\n\n\n\n\ndoes not exist');
+
+                        if (res.exists) {
+                          DatabaseService db = DatabaseService();
+
+                          String a =
+                              await db.attachToQe(codeSanner, widget.card);
+                          print(
+                              "\n\n\n\n\n\\n\n\n\n\n\n\n a ${widget.card.balance}");
+
+                          // attachToQe()
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Banking(
+                                        card: widget.card,
+                                      )));
+                        }
+                        // : null;
+                      } catch (err) {
+                        print(err);
+                      }
+
+                      setState(() {
+                        qrCodeResult = codeSanner;
+                        print("Scanning");
+                      });
+                    },
+                    child: Text(
+                      "Scan In Bank",
+                      style: TextStyle(color: Colors.indigo[900]),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

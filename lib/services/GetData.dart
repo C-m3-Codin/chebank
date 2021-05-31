@@ -8,9 +8,9 @@ import 'package:chebank/main.dart';
 class DatabaseService {
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Stream<List<CardDeets>> fetchCards() {
+  Stream<List<CardDeets>> fetchCards(String emai) {
     return _db
-        .collection(email)
+        .collection(emai)
         // .orderBy("aaa", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
@@ -20,7 +20,7 @@ class DatabaseService {
 
   addingTransaction(String time, String amount, String cardName) {
     var transaction = {"time": time, "amount": amount};
-    FirebaseFirestore.instance.collection(email).doc(cardName).update({
+    FirebaseFirestore.instance.collection(auth).doc(cardName).update({
       "transactions": FieldValue.arrayUnion([transaction])
     });
   }
@@ -44,7 +44,7 @@ class DatabaseService {
       String phone) async {
     try {
       print("\n\n\n\nDocument is ${cardId}");
-      await _db.collection(email).doc(cardId).set({
+      await _db.collection(auth).doc(cardId).set({
         "cardNo": cardId,
         "pass": password,
         "balance": name,
@@ -52,7 +52,9 @@ class DatabaseService {
         "phoneNo": phone,
         "id": cardId,
         "balance": "5000",
-        "transactions": [{}]
+        "transactions": [
+          {"amount": "2000", "time": "Min Bal"}
+        ]
       });
 
       // update({
