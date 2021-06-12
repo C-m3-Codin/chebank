@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" 			content="width=device-width, initial-scale=1">
+    <meta name="format-detection" 	content="telephone=no" />
+
+
+    <title> UploadHaven - File Sharing Made Simple </title>
+    <meta name="description" 		content=" UploadHaven - File Sharing Made Simple " />
+
+    <meta name="robots"             content="index, follow" />
+
+    <meta name="csrf-token" content="R3vcZ27vUxcxwQRZ1DmMkpmBqeVdF0WkF0fnaQJI">
+
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link media="all" type="text/css" rel="stylesheet" href="https://uploadhaven.com/css/frontend.css?id=678fda14e4e5f4e85dbc">
+    <link media="all" type="text/css" rel="stylesheet" href="https://uploadhaven.com/css/v2.css?id=ae77b1a887f04f9d6119">
+    
+    </head>
+<body id="page-top">
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="https://uploadhaven.com" style="padding-left: 30px;">
+                    <img src="https://uploadhaven.com/img/logo_dashboard.png"  alt="UploadHaven" height="39" style="margin-top: -4px;" />
+            </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mt-1 " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="https://uploadhaven.com">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://uploadhaven.com/faq">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://uploadhaven.com/contact">Contact Us</a>
+            </li>
+        </ul>
+
+	
+        <form class="form-inline my-2 ml-2 my-lg-0">
+                            <a class="btn btn-outline-warning" href="https://uploadhaven.com/account/login">Login</a>
+                    </form>
+    </div>
+</nav>
+
+
+<div class="container mt-2 mb-5 pb-5">
+    
+    
+    
+        <section class="section-padding" data-animation="fadeIn">
+        <div class="container">
+            <div class="row">
+                <div class="heading-1">Error</div>
+                <div class="clear"></div>
+
+                                    <div class="alert alert-danger col-md-12">
+                        Hotlink protection active. Download from original site.
+                    </div>
+                
+                
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script src="https://uploadhaven.com/js/manifest.js"></script>
+<script src="https://uploadhaven.com/js/vendor.js"></script>
+<script src="https://uploadhaven.com/js/frontend.js?id=2875522502def4ee89e2"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111464008-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111464008-1');
+</script>
+
+</body>
+</html>
